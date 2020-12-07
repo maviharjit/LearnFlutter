@@ -41,7 +41,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         color: Colors.black,
                         fontWeight: FontWeight.w700,
                         fontSize:30,
-                      ),) // TextStyle, Text
+                      ), // TextStyle, Text
                     ],), // Row
                   ),  // Padding
                   Row(
@@ -66,14 +66,14 @@ class _SettingsPageState extends State<SettingsPage> {
                         value: isSoundEnabled,
                         activeColor: MyTheme.deepPick,
                       ) // CupertinoSwitch
-                    ],
+                    ], // children
                   ), // Row
-                ],
-              ), // Column
-
-          ), // Padding
+                ], // Children
+              ), // child column Container
+            ), // Padding
           ), // Container
         ), // Scaffold
+      } // builder
     ); // StreamBuilder
-    } // build
-    } // _SettingsPageState
+  } // build
+} // _SettingsPageState
