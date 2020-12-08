@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';  // i added this in the hope to replace cupertino.dart above
 import 'package:tic_tac_toe_app/services/provider.dart';
 import 'package:tic_tac_toe_app/services/sound.dart';
 import 'package:tic_tac_toe_app/theme/theme.dart';

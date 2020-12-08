@@ -37,20 +37,19 @@ class Button extends StatelessWidget {
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
             stops: [0.1,0.8],
-            colors: gradient,
-          ),
+            colors: gradient),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(.1),
                 spreadRadius: 5,
                 blurRadius: 10
-              ),
-            ],
-        ),
+              ), // BoxShadow
+            ], // boxShadow
+        ), // BoxDecoration
         child: Center(
           child: child,
-        ),
-      ),
+        ), // child
+      ), // Container
     ); // GestureDetector
-  }
-}
+  } // build Widget
+} // Button
