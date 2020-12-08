@@ -7,8 +7,8 @@ import 'package:tic_tac_toe_app/services/board.dart';
 import 'package:tic_tac_toe_app/services/provider.dart';
 import 'package:tic_tac_toe_app/services/sound.dart';
 import 'package:tic_tac_toe_app/theme/theme.dart';
-
 import 'game.dart';
+
 class PickPage extends StatefulWidget {
   @override
   _PickPageState createState() => _PickPageState();
@@ -28,14 +28,15 @@ class _PickPageState extends State<PickPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+
         body: Container(
           width: MediaQuery.of(context).size.width,
           child: Column (
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
+            children: <Widget>[
               Text(
-                "Pic Your Side",
+                "Pick Your Side",
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w700,
@@ -47,37 +48,38 @@ class _PickPageState extends State<PickPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
+                children: <Widget>[
                   Column(
-                    children: [
+                    children: <Widget>[
                       GestureDetector(
                         onTap: ()=>setGroupValue('X'),
                         child: X(100,12),
                       ), // GestureDetector
                       Radio(
-                        onChanged: (e)=>setGroupValue(e),
+                        onChanged: (e) => setGroupValue(e),
                         activeColor: MyTheme.deepPick,
                         value: 'X',
                         groupValue: groupValue,
                       ), // Radio
                       Padding (
-                        padding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8.0),
                         child: Text (
-                          'first',
+                          'First',
                           style: TextStyle(
                             color: Colors.black87,
                             fontWeight: FontWeight.w700,
                             fontFamily: 'Satisfy',
-                            fontSize: 20,
+                            fontSize: 16,
                           ), // TextStyle
                         ), // Text
-                      ), // Padding
-                    ],
+                      ), // Padding ...
+                    ], // children
                   ), // Column
-                  Column(children: [
+                  Column(
+                    children: <Widget>[
                     GestureDetector(
-                      onTap: ()=>setGroupValue('O'),
-                      child: O(100,MyTheme.orange),
+                      onTap: () => setGroupValue('O'),
+                      child: O(100, MyTheme.orange),
                     ), // GestureDetector
                     Radio(
                       onChanged: (e)=>setGroupValue(e),
@@ -86,19 +88,20 @@ class _PickPageState extends State<PickPage> {
                       groupValue: groupValue,
                     ), // Radio
                     Padding (
-                      padding: const EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8.0),
                       child: Text (
-                        'second',
+                        'Second',
                         style: TextStyle(
                           color: Colors.black87,
                           fontWeight: FontWeight.w700,
                           fontFamily: 'Satisfy',
-                          fontSize: 20,
+                          fontSize: 16,
                         ), // TextStyle
                       ), // Text
                     ), // Padding
-                  ],), // Column
-                ],
+                  ], // children
+                  ), // Column
+                ], // children
               ), // Row
               Button(
                 onTap: (){
@@ -109,18 +112,30 @@ class _PickPageState extends State<PickPage> {
                     boardService.botMove();
                   }
                   soundService.playSound('click');
+
                   Navigator.push(
                     context,
                     CupertinoPageRoute(
                       builder: (context) => GamePage(),
                     ), // CupertinoPageRoute
                   ); // changed due to bug
-                },
+                }, // onTap
+                height: 40,
+                width: 250,
+                borderRadius: 200,
+                gradient: [MyTheme.deepPick, MyTheme.blueViolet],
+                child: Text(
+                "continue".toUpperCase(),
+                style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+                fontSize: 16),
+                ), // Text
               ), // Button
-            ],
+            ], // children
           ), // Column
         ), // Container
       ), // Scaffold
     ); // SafeArea
-  }
-}
+  } // build
+} // PickPage

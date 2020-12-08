@@ -5,12 +5,12 @@ import 'package:tic_tac_toe_app/services/sound.dart';
 import 'package:tic_tac_toe_app/theme/theme.dart';
 
 class SettingsPage extends StatefulWidget {
-
+  @override
   _SettingsPageState createState() => _SettingsPageState();
 } // SettingsPage
 
 class _SettingsPageState extends State<SettingsPage> {
-  //final soundService = locator<SoundService>();
+  final soundService = locator<SoundService>();
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +59,15 @@ class _SettingsPageState extends State<SettingsPage> {
                           fontSize: 20,
                       ), // TextStyle
                     ), // Text
-                    Expanded(child: Container()), // Expanded
+                    Expanded(child: Container(),
+                    ), // Expanded
                       CupertinoSwitch(
                         onChanged: (e){
                           soundService.enableSound$.add(e);
                         },
-                        value: isSoundEnabled,
+                        //value: isSoundEnabled,
                         activeColor: MyTheme.deepPick,
-                      ) // CupertinoSwitch
+                      ), // CupertinoSwitch
                     ], // children
                   ), // Row
                 ], // Children
