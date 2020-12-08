@@ -19,7 +19,7 @@ class O extends StatelessWidget {
           colors: [Colors.transparent,color],
           stops: [1,1],
         ), // RadialGradient
-      ),
+      ), // BoxDecoration
     ); // Container
-  }
-}
+  } // build Widget
+} // class O
