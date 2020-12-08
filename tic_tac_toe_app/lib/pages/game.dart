@@ -1,7 +1,7 @@
-import 'package:dart/async.dart';
+import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widget.dart';
+import 'package:flutter/widgets.dart';
 import 'package:tic_tac_toe_app/components/board.dart';
 import 'package:tic_tac_toe_app/components/o.dart';
 import 'package:tic_tac_toe_app/components/x.dart';
@@ -9,15 +9,16 @@ import 'package:tic_tac_toe_app/services/board.dart';
 import 'package:tic_tac_toe_app/services/provider.dart';
 import 'package:tic_tac_toe_app/theme/theme.dart';
 
-class GamePage extends Stateful Widget {
+class GamePage extends StatefulWidget {
   GamePageState createState() => GamePageState();
 }
 
 class GamePageState extends State<GamePage> {
   final boardService = locator<BoardService>();
+
   @override
   Widget build(BuildContext context) {
-    return willPopScope
+    return WillPopScope (
         onWillPop: () {
           boardService.newGame();
           return Future.value(true);
@@ -36,11 +37,11 @@ class GamePageState extends State<GamePage> {
                 final int oScore = snapshot.data.value;
 
                 return Container(
-                  width: MediaQuery.of(context).size.width;
+                  width: MediaQuery.of(context).size.width,
                   child: Column (
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
-                      Expand(
+                      Expanded(
                         child: Column (
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -65,7 +66,7 @@ class GamePageState extends State<GamePage> {
                                           style: TextStyle (
                                             color: Colors.black,
                                             fontSize: 18), // TextStyle
-                                          ),), // Text, Center
+                                          )), // Text, Center
                                       ), // Material
                                     ), // SizedBox
                                     Expanded(
@@ -88,13 +89,13 @@ class GamePageState extends State<GamePage> {
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[Board()],
-                                ),), // Column, Container
+                                )), // Column, Container
                               Container(
                                 padding: EdgeInsets.symmetric(horizontal: 20),
-                                color: Color.white,
+                                color: Colors.white,
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.center
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     O(35, MyTheme.orange),
                                     Padding (
@@ -122,10 +123,10 @@ class GamePageState extends State<GamePage> {
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 18), // TextStyle
-                                            ),), // Text, Center
+                                            )), // Text, Center
                                         ), // Material
                                       ), // SizedBox
-                                  ] // <Widget> []
+                                  ], // <Widget> []
                                 ), // Row
                               ), // Container
                           ], // <Widget> []
@@ -156,10 +157,11 @@ class GamePageState extends State<GamePage> {
                       ), // Container
                     ], // <Widget> []
                   ), // Column
-                ), // Container
+                ); // Container
               }), // StreamBuilder
         ), // SafeArea
       ), // Scaffold
     ), // SafeArea
+    ); // willPopScope
   } // build
 } // GamePageState

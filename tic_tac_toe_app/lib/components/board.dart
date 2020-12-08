@@ -10,26 +10,35 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'o.dart';
 
 class Board extends StatefulWidget {
-  @override
-  _BorderState createState() => _BorderState();
+
+  _BoardState createState() => _BoardState();
 }
 
 class _BoardState extends State<Board> {
   final boardService = locator<BoardService>();
   final alertService = locator<AlertService>();
+
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<MapEntry<List<List<String>>,MapEntry<BoardState,String>>>(
-      stream: Observalbe.combineLatest2(boardService.board$, boardService.boardState$, (a,b) => MapEntry<BoardState,String>>> snapshot){
+    return StreamBuilder
+        <MapEntry<List<List<String>>,MapEntry<BoardState,String>>>(
+        stream: Observable.combineLatest2(boardService.board$,
+            boardService.boardState$, (a,b) => MapEntry(a,b)),
+        builder:(context,
+        AsyncSnapshot<
+            MapEntry<List<List<String>>, MapEntry<BoardState, String>>>
+        snapshot) {
         if (! snapshot.hasData) {
           return Container();
         }
-        final List<List<String>>board = snapshot.data.key;
-        final MapEntry<BoardState,String>state = snapshot.data.value;
+
+        final List<List<String>> board = snapshot.data.key;
+        final MapEntry<BoardState,String> state = snapshot.data.value;
+
         if (state.key == BoardState.Done) {
           boardService.resetBoard();
 
-          String title = 'winner';
+          String title = 'Winner';
 
           if (state.value == null) {
             title = "Draw";
@@ -37,7 +46,7 @@ class _BoardState extends State<Board> {
 
           Widget body = state.value == 'X'
               ? X(50,20)
-              : (state.value == "O")
+              : (state.value == "O"
               ? O(50, MyTheme.orange)
               : Row(
               children: <Widget>[X(50,20), O(50, MyTheme.orange)],
@@ -61,7 +70,7 @@ class _BoardState extends State<Board> {
           padding: EdgeInsets.all(30),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(10);
+            borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
                 blurRadius: 7.0,
@@ -76,9 +85,16 @@ class _BoardState extends State<Board> {
             children: board
                 .asMap()
                 .map(
+                  (i,row) => MapEntry(
+                i,
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: row
+                      .asMap()
+                      .map(
                   (j,item) => MapEntry(
-                j,
-                GestureDetector(
+                  j,
+                  GestureDetector(
                   onTap: () {
                     if (board[i][j] != ' ') return;
                     boardService.newMove(i,j);
@@ -98,38 +114,38 @@ class _BoardState extends State<Board> {
     ); // Container
   }); // StreamBuilder
   }
-}
 
-Widget _buildBox(int i, int j, item) {
-  BorderBox border = Border();
-  BorderSide borderStyle = BorderSide(width: 1, color: Colors.black26);
-  double height = 80;
-  double width = 60;
-  if(j == 1) {
-    border = Border(right: borderStyle, left: borderStyle);
-    height = width = 80;
-  }
-  if (i == 1) {
-    border = Border(top: borderStyle, bottom: borderStyle);
-  }
-  if (i == 1 && j == 1) {
-    border = Border(
-        top: borderStyle,
-        bottom: borderStyle,
-        left: borderStyle,
-        right: borderStyle);
+
+  Widget _buildBox(int i, int j, item) {
+    BoxBorder border = Border();
+    BorderSide borderStyle = BorderSide(width: 1, color: Colors.black26);
+    double height = 80;
+    double width = 60;
+    if(j == 1) {
+      border = Border(right: borderStyle, left: borderStyle);
+      height = width = 80;
     }
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: border,
-      ), // BoxDecoration
-      height: height,
-      width: width,
-      child: Center(
-        child:
-          item == ' ' ? null : item == 'X' ? X(50,13) : O(50, MyTheme.orange),
-      ), // Center
-    ); // Container
-  }
+    if (i == 1) {
+      border = Border(top: borderStyle, bottom: borderStyle);
+    }
+    if (i == 1 && j == 1) {
+      border = Border(
+          top: borderStyle,
+          bottom: borderStyle,
+          left: borderStyle,
+          right: borderStyle);
+      }
+      return Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: border,
+        ), // BoxDecoration
+        height: height,
+        width: width,
+        child: Center(
+          child:
+            item == ' ' ? null : item == 'X' ? X(50,13) : O(50, MyTheme.orange),
+        ), // Center
+      ); // Container
+    } // _buildBox
 }

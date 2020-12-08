@@ -2,63 +2,64 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tic_tac_toe_app/services/provider.dart';
 import 'package:tic_tac_toe_app/services/sound.dart';
-import 'package:tic_tac_toe_app/services/theme.dart';
+import 'package:tic_tac_toe_app/theme/theme.dart';
 
 class SettingsPage extends StatefulWidget {
-  @override
+
   _SettingsPageState createState() => _SettingsPageState();
 } // SettingsPage
 
 class _SettingsPageState extends State<SettingsPage> {
-  final soundService = locator<SoundService>();
+  //final soundService = locator<SoundService>();
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<bool>(
       stream: soundService.enableSound$,
-      builder: (context,AsyncSnapshot<bool> snapshot) {
+      builder: (context, AsyncSnapshot<bool> snapshot) {
         if (!snapshot.hasData) {
          return Container();
       }
-        final bool isSoundEnabled = snapshot.data;
+        //final bool isSoundEnabled = snapshot.data;
         return Scaffold (
           body: Container(
-          width: MediaQuery.of(context).size.width;
+          width: MediaQuery.of(context).size.width,
           child: Padding(
               padding:
               const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: [
+                children: <Widget> [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20),
-                    child: Row(mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                    children: <Widget> [
                       Text("settings".toUpperCase(),
-                      style: TextStyle(),
+                      style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w700,
                         fontSize:30,
+                      ),
                       ), // TextStyle, Text
-                    ],), // Row
+                    ],
+                    ), // Row
                   ),  // Padding
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
+                    children: <Widget>[
                       Text(
                         "Enable Sound",
                         style: TextStyle(
                           color: Colors.black,
-                          font.size: 20,
+                          fontSize: 20,
                       ), // TextStyle
                     ), // Text
-                    Expanded(
-                      child: Container(),
-                    ), // Expanded
+                    Expanded(child: Container()), // Expanded
                       CupertinoSwitch(
                         onChanged: (e){
                           soundService.enableSound$.add(e);
@@ -72,8 +73,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ), // child column Container
             ), // Padding
           ), // Container
-        ), // Scaffold
-      } // builder
-    ); // StreamBuilder
+        ); // Scaffold
+      }); // StreamBuilder
   } // build
 } // _SettingsPageState

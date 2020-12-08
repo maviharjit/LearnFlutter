@@ -26,17 +26,19 @@ class BoardService {
   String _start;
 
   BoardService() {
-    _initSreams();
+    _initStreams();
   } // BoardService
 
   void newMove(int i, int j) {
 
     String player = _player$.value;
     List<List<String>> currentBoard = _board$.value;
+
     currentBoard[i][j] = player;
     _playMoveSound(player);
     _board$.add(currentBoard);
     switchPlayer(player);
+
     bool isWinner = _checkWinner(i, j);
 
     if (isWinner) {
@@ -75,7 +77,7 @@ class BoardService {
 
     if (isWinner) {
       _updateScore(player);
-      _boardState$.add(MapEntry(BoardState.Done),player));
+      _boardState$.add(MapEntry(BoardState.Done,player));
       return;
     } else if (isBoardFull()) {
       _boardState$.add(MapEntry(BoardState.Done,null));
@@ -104,7 +106,7 @@ class BoardService {
     var n = currentBoard.length - 1;
     var player = currentBoard[x][y];
 
-    for(int i = 0; i < currentBoard.lenght; i++) {
+    for(int i = 0; i < currentBoard.length; i++) {
       if (currentBoard[x][i] == player) col++;
       if (currentBoard[i][y] == player) row++;
       if (currentBoard[i][i] == player) diag++;
@@ -159,8 +161,14 @@ class BoardService {
   } // newGame()
 
   void _initStreams() {
-    _board$ = BehaviorSubject<List<List<String>>>.seeded(
-      MapEntry(BoardState.Play, ""),
+    _board$ = BehaviorSubject<List<List<String>>>.seeded([
+      [' ', ' ', ' '],
+      [' ', ' ', ' '],
+      [' ', ' ', ' ']
+    ]);
+    _player$ = BehaviorSubject<String>.seeded("X");
+    _boardState$ = BehaviorSubject<MapEntry<BoardState,String>>.seeded(
+      MapEntry(BoardState.Play,""),
     ); // BehaviorSubject.seeded
     _gameMode$ = BehaviorSubject<GameMode>.seeded(GameMode.Solo);
     _score$ = BehaviorSubject<MapEntry<int, int>>.seeded(MapEntry(0, 0));

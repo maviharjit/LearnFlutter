@@ -61,7 +61,7 @@ class _PickPageState extends State<PickPage> {
                         groupValue: groupValue,
                       ), // Radio
                       Padding (
-                        Padding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: Text (
                           'first',
                           style: TextStyle(
@@ -86,7 +86,7 @@ class _PickPageState extends State<PickPage> {
                       groupValue: groupValue,
                     ), // Radio
                     Padding (
-                      Padding: const EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Text (
                         'second',
                         style: TextStyle(
@@ -102,7 +102,7 @@ class _PickPageState extends State<PickPage> {
               ), // Row
               Button(
                 onTap: (){
-                  boardService.resetBoards();
+                  boardService.resetBoard();
                   boardService.setStart(groupValue);
                   if (groupValue == 'O') {
                     boardService.player$.add('X');
@@ -114,7 +114,7 @@ class _PickPageState extends State<PickPage> {
                     CupertinoPageRoute(
                       builder: (context) => GamePage(),
                     ), // CupertinoPageRoute
-                  ),
+                  ); // changed due to bug
                 },
               ), // Button
             ],

@@ -3,7 +3,7 @@ import 'package:tic_tac_toe_app/pages/start.dart';
 import 'package:tic_tac_toe_app/services/provider.dart';
 
 void main() {
-  setupLoader();
+  setupLocator();
   runApp(MyApp());
 }
 
