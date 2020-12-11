@@ -14,27 +14,32 @@ class SecondClass extends StatelessWidget {
             width: 300,
             alignment: Alignment(-1, -1),
             decoration: BoxDecoration(
-                gradient: RadialGradient(colors: [
-              Colors.green,
-              Colors.blue,
-              Colors.orange,
-              Colors.pink
-            ], stops: [
-              0.2,
-              0.5,
-              0.7,
-              1
-            ], center: Alignment(0.1, 0.3), focal: Alignment(-0.1, 0.6))),
-            child: Text(
-              generateNumber(),
-              textDirection: TextDirection.ltr,
-            )));
-  }
+                gradient: RadialGradient(colors: [Colors.green, Colors.blue, Colors.orange, Colors.pink], 
+                stops: [0.2, 0.5, 0.7, 1], 
+                center: Alignment(0.1, 0.3), 
+                focal: Alignment(-0.1, 0.6)
+              )
+            ),
+            child: GestureDetector(
+              onTap: (){
+                Scaffold.of(context).showSnackBar(new SnackBar(
+                  content: new Text('It was pressed'),
+                  duration: Duration(seconds: 2),
+                )
+                ); // showSnackBar
+              }, // onTap
+              child: Text(generateNumber(),textDirection: TextDirection.ltr,)
+            )
+            //child: Text(generateNumber(),textDirection: TextDirection.ltr,)
+        )
+    );
+  } // Widget
 
   // return a random number between 0 and 20 as a String
   String generateNumber() {
     var r = Random();
     int i = r.nextInt(20);
     return "A random number between 0 and 20 is ${i}";
-  }
-}
+  } // generateNumber
+
+} // SecondClass
