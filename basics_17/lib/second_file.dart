@@ -11,11 +11,13 @@ class SecondClass extends StatelessWidget {
               ListTile(
                 leading: Icon(Icons.ac_unit),
                 title: Text('Dog'),
+                subtitle: Text('This is an animal'),
                 trailing: Icon(Icons.access_alarm),
               ),
               ListTile(
                 leading: Icon(Icons.access_time),
                 title: Text('Cat'),
+                subtitle: Text('This is also an animal'),
                 trailing: Icon(Icons.account_balance),
               ),
               Text('Bear'),
