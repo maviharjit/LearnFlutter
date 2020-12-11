@@ -11,6 +11,7 @@ class SecondClass extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
+            Icon(Icons.ac_unit),
             Container(
               color: Colors.yellow,
               height: 400,
