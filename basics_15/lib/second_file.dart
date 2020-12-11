@@ -6,20 +6,20 @@ class SecondClass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      // This row contains two containers
-      child: Row(
+      // This column contains two containers
+      child: Column(
         // MainAxisAlignment options are .spceBetween, .spaceAround, .spaceEvenly, .center, .end, .start
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Container(
             color: Colors.yellow,
-            height: 500,
-            width: 150,
+            height: 200,
+            width: 250,
           ),
           Container(
             color: lightPurpleColor,
-            height: 500,
-            width: 150,
+            height: 200,
+            width: 250,
           )
         ]
       )
