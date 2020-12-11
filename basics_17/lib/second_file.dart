@@ -9,10 +9,14 @@ class SecondClass extends StatelessWidget {
       child: ListView(
             children: <Widget>[
               ListTile(
+                leading: Icon(Icons.ac_unit),
                 title: Text('Dog'),
+                trailing: Icon(Icons.access_alarm),
               ),
               ListTile(
+                leading: Icon(Icons.access_time),
                 title: Text('Cat'),
+                trailing: Icon(Icons.account_balance),
               ),
               Text('Bear'),
               Text('Wolf'),
