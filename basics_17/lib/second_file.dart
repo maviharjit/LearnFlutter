@@ -26,9 +26,12 @@ class SecondClass extends StatelessWidget {
                 color: Colors.green,
                 padding: EdgeInsets.only(top: 20),
               ),
-              
-        ]
-      )
+              Padding(
+                child: Text('Wolf'),
+                padding: EdgeInsets.all(10.0),
+              ),
+        ],
+      ),
     );
   } // Widget
 } // SecondClass
