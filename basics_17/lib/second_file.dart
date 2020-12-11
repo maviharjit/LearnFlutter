@@ -20,8 +20,13 @@ class SecondClass extends StatelessWidget {
                 subtitle: Text('This is also an animal'),
                 trailing: Icon(Icons.account_balance),
               ),
-              Text('Bear'),
-              Text('Wolf'),
+              Container(
+                child: Text('Bear'),
+                margin: EdgeInsets.symmetric(horizontal: 30),
+                color: Colors.green,
+                padding: EdgeInsets.only(top: 20),
+              ),
+              
         ]
       )
     );
