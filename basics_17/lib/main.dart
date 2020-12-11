@@ -22,7 +22,7 @@ class MyClass extends StatelessWidget {
               actions: <Widget>[Icon(Icons.settings)],
               bottom: PreferredSize(
                 // Try hot restart if hot reload fails to update preferredsize
-                preferredSize: Size.fromHeight(20),
+                preferredSize: Size.fromHeight(15),
                 child: Text('Some Text in the AppBar'), //
               ),
             ),

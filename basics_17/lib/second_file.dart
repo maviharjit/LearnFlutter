@@ -8,8 +8,14 @@ class SecondClass extends StatelessWidget {
         // Lets define a Column with four rows within it, 
       child: ListView(
             children: <Widget>[
-              Text('Dog'),
-              Text('Cat')
+              ListTile(
+                title: Text('Dog'),
+              ),
+              ListTile(
+                title: Text('Cat'),
+              ),
+              Text('Bear'),
+              Text('Wolf'),
         ]
       )
     );
