@@ -9,16 +9,16 @@ class SecondClass extends StatelessWidget {
       // This column contains two containers
       child: Column(
         // MainAxisAlignment options are .spceBetween, .spaceAround, .spaceEvenly, .center, .end, .start
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
             color: Colors.yellow,
-            height: 200,
+            height: 400,
             width: 250,
           ),
           Container(
             color: lightPurpleColor,
-            height: 200,
+            height: 400,
             width: 250,
           )
         ]
