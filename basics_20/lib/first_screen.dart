@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SecondClass extends StatelessWidget {
+class FirstPageClass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Make sure each sceeen/class has the same scaffold unless you want different titles on differnt pages
@@ -107,7 +107,15 @@ class SecondClass extends StatelessWidget {
           ),
           // this takes you to screen 2
           GestureDetector(
-            child: Text('Click me'),
+            child: Padding(
+              child: Text('Click me for next page',
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 20,
+                ),
+              ),
+              padding: EdgeInsets.all(30),
+            ),
             onTap: () {
               Navigator.of(context).pushNamed('/screen2');
               },
@@ -117,4 +125,4 @@ class SecondClass extends StatelessWidget {
       ),
     );
   } // Widget
-} // SecondClass
+} // FirstPageClass

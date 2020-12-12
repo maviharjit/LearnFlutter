@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter/src/widgets/basic.dart';
 import 'package:basics_20/first_screen.dart';
 import 'package:basics_20/second_screen.dart';
 
@@ -14,10 +13,10 @@ class MyClass extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "My Flutter app",
         routes: <String, WidgetBuilder> {
-          '/screen1': (BuildContext context) => new SecondClass(),
+          '/screen1': (BuildContext context) => new FirstPageClass(),
           '/screen2': (BuildContext context) => new SecondPageClass(),
         },
-        home: SecondClass()
+        home: FirstPageClass()
     );
   } // Widget
 

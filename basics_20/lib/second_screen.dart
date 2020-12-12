@@ -20,7 +20,11 @@ class SecondPageClass extends StatelessWidget {
                     GestureDetector(
                       child: Center(
                         child: Padding (
-                          child: Text('Take me back'),
+                          child: Text('Take me back',
+                            style: TextStyle(
+                                color: Colors.blue,
+                                fontSize: 20,
+                            )),
                           padding: EdgeInsets.all(20.0),
                         ),
                       ),
