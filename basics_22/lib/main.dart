@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:basics_22/modules/global.dart';
+import 'package:basics_22/modules/weatherApi.dart';
+import 'dart:async';
+import 'dart:convert';
 
 void main() => runApp(MyApp());
 
@@ -28,7 +33,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   // this read the data using earquake API
-  fetchPosts() async {}
+  fetchPosts() async {
+    var response = await http
+        .get(EARTHQUAKE_URL, headers: {"Content-Type": "application/json"});
+    if (response.statusCode == 200) {
+      print(response.body);
+    } else {
+      print("error");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,8 +130,6 @@ class _MyHomePageState extends State<MyHomePage> {
               }
             }
           },
-        )
-
-    ));
+        )));
   }
 }
