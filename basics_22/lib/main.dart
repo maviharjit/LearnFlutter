@@ -32,14 +32,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  WeatherApi weatherApi;
+
   // this read the data using earquake API
   fetchPosts() async {
     var response = await http
         .get(EARTHQUAKE_URL, headers: {"Content-Type": "application/json"});
     if (response.statusCode == 200) {
       print(response.body);
+      // take the response body and decode the json. is it deserializing?
+      final data = json.decode(response.body);
+      // what does fromJson do?
+      weatherApi = WeatherApi.fromJson(data);
+      return weatherApi;
     } else {
-      print("error");
+      //print("error");
+      return "Sorry for Inconvenience,Server Under Maintenance";
     }
   }
 
@@ -74,59 +82,69 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               } else {
                 return ListView.builder(
+                    itemCount: weatherApi.features.length,
                     itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                            color: Color(0xFFE0E0E0),
-                            offset: Offset(0.5, 0.5),
-                            blurRadius: 10.0,
-                          ),
-                        ],
-                        shape: BoxShape.rectangle,
-                        color: Color(0xFFFAFAFA),
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    margin: EdgeInsets.all(8),
-                    padding: EdgeInsets.all(8),
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                            width: MediaQuery.of(context).size.width / 6,
-                            child: Container(
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.red,
-                                ),
+                      List<String> places = weatherApi
+                          .features[index].properties.place
+                          .split(",");
+                      print(places);
+                      return Container(
+                        decoration: BoxDecoration(
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                color: Color(0xFFE0E0E0),
+                                offset: Offset(0.5, 0.5),
+                                blurRadius: 10.0,
+                              ),
+                            ],
+                            shape: BoxShape.rectangle,
+                            color: Color(0xFFFAFAFA),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                        margin: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(8),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                                width: MediaQuery.of(context).size.width / 6,
                                 child: Container(
-                                    margin: EdgeInsets.only(
-                                        left:
-                                            MediaQuery.of(context).size.width /
+                                    padding: EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.red,
+                                    ),
+                                    child: Container(
+                                        margin: EdgeInsets.only(
+                                            left: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
                                                 19),
-                                    child: Text(
-                                      "1",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700),
-                                    )))),
-                        Container(
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text("Banglore",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w700)),
-                                Text("15 Km from Banglore",
-                                    style: TextStyle(fontSize: 12))
-                              ]),
-                        )
-                      ],
-                    ),
-                  );
-                });
+                                        child: Text(
+                                          (weatherApi.features[index].properties
+                                                  .mag)
+                                              .ceil()
+                                              .toString(),
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w700),
+                                        )))),
+                            Container(
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(places[places.length-1].trim(),
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700)),
+                                    Text(places[0],
+                                        style: TextStyle(fontSize: 12))
+                                  ]),
+                            )
+                          ],
+                        ),
+                      );
+                    });
               }
             }
           },
