@@ -51,6 +51,14 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  List<Color> colors = [
+    Colors.yellow,
+    Colors.green,
+    Colors.blue,
+    Colors.orange,
+    Colors.red
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     padding: EdgeInsets.all(8),
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: Colors.red,
+                                      color: colors[(weatherApi.features[index].properties.mag).ceil()>4?0:(weatherApi.features[index].properties.mag).ceil()-1],
                                     ),
                                     child: Container(
                                         margin: EdgeInsets.only(
@@ -133,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    Text(places[places.length-1].trim(),
+                                    Text(places[places.length - 1].trim(),
                                         style: TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w700)),
