@@ -14,12 +14,13 @@ class FirstPageClass extends StatelessWidget {
       ),
       body: Material(
         // Warn the user that app will close if they pressed the back button
+        // todo: how to add a yes no option in that dialog so a user can quit the app if they really want
         child: WillPopScope(
-          onWillPop: (){
+          onWillPop: () {
             showDialog(
               context: context,
               // what is this underscore about?
-              builder: (_)=> AlertDialog(
+              builder: (_) => AlertDialog(
                 title: Text('Are you sure?'),
                 content: Text('It will close the applicatoin'),
               ),
