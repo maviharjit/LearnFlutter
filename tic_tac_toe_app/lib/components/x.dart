@@ -13,11 +13,14 @@ class X extends StatelessWidget {
     return Container(
       height: size,
       width: size,
+      // stack widget takes multiple widgets and renders them one on top of another
       child: Stack(
         children: [
+          // positioned widget is for positioning the various widget in the stack
           Positioned (
             left: 0,
             top: size/2 - height/2,
+            // creates one slash for the X, as a rotated box
             child: RotationTransition(
               turns: AlwaysStoppedAnimation(-45/360),
               child: Container(
@@ -42,6 +45,7 @@ class X extends StatelessWidget {
             right: 0,
             top: size/2 - height/2,
             child: RotationTransition(
+              // creates the other slash for the X
               turns: AlwaysStoppedAnimation(45/360),
               child: Container(
                 decoration: BoxDecoration(

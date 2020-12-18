@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class AlertService {
-
+  
+  // data members
   AlertStyle _resultAlertStyle;
-  AlertStyle get resultAlertStyle => _resultAlertStyle;
   AlertStyle _settingsAlertStyle;
+
+  // getters
+  AlertStyle get resultAlertStyle => _resultAlertStyle;
   AlertStyle get settingAlertStyle => _settingsAlertStyle;
 
+  // constructor
   AlertService(){
     _resultAlertStyle = AlertStyle(
       animationType: AnimationType.grow,
@@ -26,6 +30,7 @@ class AlertService {
         borderRadius: BorderRadius.circular(10.0),
       ),
     );
+
     _settingsAlertStyle = AlertStyle(
       animationType: AnimationType.fromBottom,
       isCloseButton: false,

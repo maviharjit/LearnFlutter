@@ -8,27 +8,28 @@ enum BoardState {Done, Play}
 enum GameMode {Solo, Multi}
 
 class BoardService {
+
+  // data members
   BehaviorSubject<List<List<String>>> _board$;
-  BehaviorSubject<List<List<String>>> get board$ => _board$;
-
   BehaviorSubject<String> _player$;
-  BehaviorSubject<String> get player$ => _player$;
-
   BehaviorSubject<MapEntry<BoardState, String>> _boardState$;
-  BehaviorSubject<MapEntry<BoardState, String>> get boardState$ => _boardState$;
-
   BehaviorSubject<GameMode> _gameMode$;
-  BehaviorSubject<GameMode> get gameMode$ => _gameMode$;
-
   BehaviorSubject<MapEntry<int, int>> _score$;
-  BehaviorSubject<MapEntry<int, int>> get score$ => _score$;
-
   String _start;
 
+  // getters
+  BehaviorSubject<List<List<String>>> get board$ => _board$;
+  BehaviorSubject<String> get player$ => _player$;
+  BehaviorSubject<MapEntry<BoardState, String>> get boardState$ => _boardState$;
+  BehaviorSubject<GameMode> get gameMode$ => _gameMode$;
+  BehaviorSubject<MapEntry<int, int>> get score$ => _score$;
+
+  // constructor
   BoardService() {
     _initStreams();
   } // BoardService
 
+  // to be continued...
   void newMove(int i, int j) {
 
     String player = _player$.value;

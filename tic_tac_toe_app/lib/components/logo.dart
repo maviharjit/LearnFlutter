@@ -3,6 +3,8 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // is this drawing the game logo on the main/splash screen?
+    // this this on code pen
     return Stack(
       children: [
         Container(

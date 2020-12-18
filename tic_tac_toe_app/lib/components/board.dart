@@ -14,6 +14,7 @@ class Board extends StatefulWidget {
   _BoardState createState() => _BoardState();
 }
 
+// to be continued...
 class _BoardState extends State<Board> {
   final boardService = locator<BoardService>();
   final alertService = locator<AlertService>();

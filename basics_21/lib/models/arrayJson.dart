@@ -11,7 +11,8 @@ class Student {
 
   // what does factory do?
   // is this deserialization i.e. converting raw data/string to object
-  factory Student.fromJason(Map<String, dynamic> json) {
+  // yes it is
+  factory Student.fromJson(Map<String, dynamic> json) {
     var subjectsFromJson = json["subjects"];
     List<String> subjectsList = new List<String>.from(subjectsFromJson);
 

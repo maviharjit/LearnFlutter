@@ -18,6 +18,7 @@ class _PickPageState extends State<PickPage> {
   final boardService = locator<BoardService>();
   final soundService = locator<SoundService>();
   String groupValue = 'X';
+  
   void setGroupValue(value) {
     setState(() {
       groupValue = value;

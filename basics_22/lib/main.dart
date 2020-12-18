@@ -40,9 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
         .get(EARTHQUAKE_URL, headers: {"Content-Type": "application/json"});
     if (response.statusCode == 200) {
       print(response.body);
-      // take the response body and decode the json. is it deserializing?
+      // take the response body and decode the json. is it deserializing? no
       final data = json.decode(response.body);
-      // what does fromJson do?
+      // This is serialization i.e. converting JSON string into object
       weatherApi = WeatherApi.fromJson(data);
       return weatherApi;
     } else {

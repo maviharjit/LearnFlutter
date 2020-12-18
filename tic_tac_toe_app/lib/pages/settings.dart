@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';  // i added this in the hope to replace cupertino.dart above
 import 'package:tic_tac_toe_app/services/provider.dart';
 import 'package:tic_tac_toe_app/services/sound.dart';
 import 'package:tic_tac_toe_app/theme/theme.dart';
@@ -21,7 +20,8 @@ class _SettingsPageState extends State<SettingsPage> {
         if (!snapshot.hasData) {
          return Container();
       }
-        //final bool isSoundEnabled = snapshot.data;
+        // this is working now
+        final bool isSoundEnabled = snapshot.data;
         return Scaffold (
           body: Container(
           width: MediaQuery.of(context).size.width,
@@ -66,7 +66,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         onChanged: (e){
                           soundService.enableSound$.add(e);
                         },
-                        //value: isSoundEnabled,
+                        // this is working now
+                        value: isSoundEnabled,
                         activeColor: MyTheme.deepPick,
                       ), // CupertinoSwitch
                     ], // children
